@@ -8,7 +8,7 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 60000, // 60 second timeout for searches
+  timeout: 300000, // 5 minute timeout for searches (channel analysis takes time)
 });
 
 // Request interceptor
