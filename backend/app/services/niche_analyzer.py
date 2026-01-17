@@ -151,7 +151,7 @@ class NicheAnalyzer:
 
         # Filter by age
         if age_days > max_age_days:
-            logger.debug(f"Channel {channel_id} too old: {age_days} days")
+            logger.info(f"❌ Filtered: {channel['title']} - Age: {age_days} days (max: {max_age_days})")
             return None
 
         # Get video count
@@ -159,7 +159,7 @@ class NicheAnalyzer:
 
         # Filter by video count
         if video_count > max_videos:
-            logger.debug(f"Channel {channel_id} has too many videos: {video_count}")
+            logger.info(f"❌ Filtered: {channel['title']} - Videos: {video_count} (max: {max_videos})")
             return None
 
         # Calculate tier
@@ -183,6 +183,9 @@ class NicheAnalyzer:
         avg_views = (
             channel['view_count'] / video_count if video_count > 0 else 0
         )
+
+        # Log successful channel
+        logger.info(f"✅ PASSED: {channel['title']} - Age: {age_days} days, Tier: {tier}, Videos: {video_count}")
 
         # Build channel analysis
         return ChannelAnalysis(
