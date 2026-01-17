@@ -83,14 +83,14 @@ const FilterPanel = ({ filters, onFilterChange }) => {
             className="filter-slider"
             min="0"
             max="10000"
-            step="100"
-            value={filters.minSubscribers || 1000}
+            step="50"
+            value={filters.minSubscribers || 100}
             onChange={handleMinSubscribersChange}
           />
           <div className="slider-labels">
             <span>0</span>
+            <span>100 (New)</span>
             <span>1,000</span>
-            <span>5,000</span>
             <span>10,000</span>
           </div>
         </div>
@@ -103,26 +103,27 @@ const FilterPanel = ({ filters, onFilterChange }) => {
             type="range"
             className="filter-slider"
             min="0"
-            max="500000"
-            step="10000"
-            value={filters.minTotalViews || 50000}
+            max="100000"
+            step="1000"
+            value={filters.minTotalViews || 5000}
             onChange={handleMinTotalViewsChange}
           />
           <div className="slider-labels">
             <span>0</span>
-            <span>50K</span>
-            <span>250K</span>
-            <span>500K</span>
+            <span>5K (New)</span>
+            <span>25K</span>
+            <span>100K</span>
           </div>
         </div>
       </div>
 
       <div className="filter-info">
-        <h4>Niche Criteria:</h4>
+        <h4>Discovery Settings:</h4>
         <ul>
-          <li>✓ Ideal: ≤5 channels AND ≤50 videos in niche pool</li>
-          <li>✓ Good: ≤10 channels AND ≤100 videos in niche pool</li>
-          <li>⚠ Channel age calculated from <strong>first upload</strong>, not channel creation</li>
+          <li>🎯 <strong>New Channels:</strong> 100 subs, 5K views (viral başlangıç)</li>
+          <li>✨ <strong>Viral Potential:</strong> Yeni ve hızlı büyüyen kanallar</li>
+          <li>🌍 <strong>All Niches:</strong> 30+ farklı kategori taranır</li>
+          <li>⚠ Channel age calculated from <strong>first upload</strong></li>
         </ul>
       </div>
     </div>

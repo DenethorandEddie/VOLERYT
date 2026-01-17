@@ -24,21 +24,21 @@ async def discover_channels(
         description="Maximum videos per channel"
     ),
     min_subscribers: int = Query(
-        default=1000,
+        default=100,
         ge=0,
         le=1000000,
-        description="Minimum subscriber count"
+        description="Minimum subscriber count (100 for new channels)"
     ),
     min_total_views: int = Query(
-        default=50000,
+        default=5000,
         ge=0,
         le=100000000,
-        description="Minimum total view count"
+        description="Minimum total view count (5K for new channels)"
     ),
     target_channels: int = Query(
-        default=20,
+        default=50,
         ge=5,
-        le=50,
+        le=100,
         description="Target number of channels to discover"
     )
 ):
@@ -97,7 +97,7 @@ async def discover_channels(
             min_subscribers=min_subscribers,
             min_total_views=min_total_views,
             target_channels=target_channels,
-            search_terms_limit=15
+            search_terms_limit=30
         )
 
         # Calculate quota used

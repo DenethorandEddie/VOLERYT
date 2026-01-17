@@ -21,10 +21,10 @@ class DiscoveryService:
         self,
         max_channel_age_days: int = 180,
         max_videos_per_channel: int = 15,
-        min_subscribers: int = 1000,
-        min_total_views: int = 50000,
-        target_channels: int = 20,
-        search_terms_limit: int = 15
+        min_subscribers: int = 100,
+        min_total_views: int = 5000,
+        target_channels: int = 50,
+        search_terms_limit: int = 30
     ) -> Dict[str, Any]:
         """
         Discover channels across all YouTube niches
