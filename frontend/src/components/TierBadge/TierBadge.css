@@ -1,0 +1,35 @@
+.tier-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  min-width: 80px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tier-splus {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+}
+
+.tier-great {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.tier-good {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+
+.tier-average {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+}
+
+.tier-possible {
+  background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+}
+
+.tier-too-old {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+}

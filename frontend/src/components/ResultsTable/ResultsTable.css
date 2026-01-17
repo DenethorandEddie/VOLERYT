@@ -1,0 +1,198 @@
+.results-table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.results-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.results-table th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.results-table th:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.results-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.results-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.results-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.results-table tbody tr.expanded {
+  background-color: #f3f4f6;
+}
+
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.channel-thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.channel-name {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.channel-age-desc {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.number-cell {
+  text-align: right;
+  font-weight: 600;
+  color: #374151;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-link,
+.btn-expand {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-link {
+  background: #667eea;
+  color: white;
+  border: none;
+}
+
+.btn-link:hover {
+  background: #5568d3;
+}
+
+.btn-expand {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.btn-expand:hover {
+  background: #e5e7eb;
+}
+
+.expanded-row td {
+  padding: 0 !important;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.viral-videos {
+  padding: 20px;
+  background: #f9fafb;
+}
+
+.viral-videos h4 {
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+.viral-videos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.viral-videos li {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  border-left: 4px solid #667eea;
+  font-size: 14px;
+  color: #374151;
+}
+
+.viral-videos li strong {
+  color: #1f2937;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-size: 18px;
+}
+
+@media (max-width: 1024px) {
+  .results-table {
+    font-size: 14px;
+  }
+
+  .results-table th,
+  .results-table td {
+    padding: 10px;
+  }
+
+  .channel-thumbnail {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: scroll;
+  }
+
+  .results-table {
+    min-width: 800px;
+  }
+}
