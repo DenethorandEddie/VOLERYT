@@ -62,6 +62,11 @@ const ResultsTable = ({ channels }) => {
               <th onClick={() => handleSort('channel_name')}>
                 Channel Name {sortConfig.key === 'channel_name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
               </th>
+              {channels[0]?.detected_niche && (
+                <th onClick={() => handleSort('detected_niche')}>
+                  Detected Niche {sortConfig.key === 'detected_niche' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                </th>
+              )}
               <th onClick={() => handleSort('tier')}>
                 Tier {sortConfig.key === 'tier' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
               </th>
@@ -95,6 +100,16 @@ const ResultsTable = ({ channels }) => {
                       </div>
                     </div>
                   </td>
+                  {channel.detected_niche && (
+                    <td>
+                      <div className="detected-niche">{channel.detected_niche}</div>
+                      {channel.keywords && channel.keywords.length > 0 && (
+                        <div className="small-text niche-keywords">
+                          {channel.keywords.slice(0, 3).join(', ')}
+                        </div>
+                      )}
+                    </td>
+                  )}
                   <td>
                     <TierBadge tier={channel.tier} color={channel.tier_color} />
                   </td>
@@ -123,7 +138,7 @@ const ResultsTable = ({ channels }) => {
                 </tr>
                 {expandedRow === index && channel.viral_videos.length > 0 && (
                   <tr className="expanded-row">
-                    <td colSpan="7">
+                    <td colSpan={channel.detected_niche ? "8" : "7"}>
                       <div className="viral-videos">
                         <h4>Viral Videos:</h4>
                         <ul>

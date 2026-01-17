@@ -80,6 +80,18 @@
   color: #6b7280;
 }
 
+.detected-niche {
+  font-weight: 600;
+  color: #10B981;
+  margin-bottom: 2px;
+  text-transform: capitalize;
+}
+
+.niche-keywords {
+  font-style: italic;
+  color: #6b7280;
+}
+
 .number-cell {
   text-align: right;
   font-weight: 600;

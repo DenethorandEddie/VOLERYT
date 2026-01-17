@@ -10,7 +10,7 @@ import { useFilters } from './hooks/useFilters';
 import './styles/index.css';
 
 function App() {
-  const { results, loading, error, performSearch } = useSearch();
+  const { results, loading, error, performSearch, performDiscover } = useSearch();
   const { filters, updateFilter } = useFilters();
 
   const handleSearch = async (niche) => {
@@ -18,6 +18,14 @@ function App() {
       await performSearch(niche, filters);
     } catch (err) {
       console.error('Search error:', err);
+    }
+  };
+
+  const handleDiscover = async () => {
+    try {
+      await performDiscover(filters);
+    } catch (err) {
+      console.error('Discovery error:', err);
     }
   };
 
@@ -30,7 +38,7 @@ function App() {
 
       <div className="container">
         <div className="card">
-          <SearchBar onSearch={handleSearch} loading={loading} />
+          <SearchBar onSearch={handleSearch} onDiscover={handleDiscover} loading={loading} />
         </div>
 
         <FilterPanel filters={filters} onFilterChange={updateFilter} />

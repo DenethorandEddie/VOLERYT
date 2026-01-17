@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.api.routes import search, export
+from app.api.routes import search, export, discover
 import logging
 
 # Configure logging
@@ -51,6 +51,7 @@ app.add_middleware(
 # Include routers
 app.include_router(search.router)
 app.include_router(export.router)
+app.include_router(discover.router)
 
 
 @app.get("/")

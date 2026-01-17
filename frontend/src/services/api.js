@@ -47,6 +47,24 @@ export const searchNiche = async (searchParams) => {
 };
 
 /**
+ * Discover channels across all YouTube niches
+ */
+export const discoverChannels = async (filters) => {
+  try {
+    const params = new URLSearchParams({
+      max_channel_age_days: filters.maxAgeDays || 180,
+      max_videos_per_channel: filters.maxVideos || 15,
+      target_channels: filters.targetChannels || 20,
+    });
+
+    const response = await apiClient.get(`/api/v1/discover/channels?${params}`);
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+/**
  * Health check
  */
 export const healthCheck = async () => {

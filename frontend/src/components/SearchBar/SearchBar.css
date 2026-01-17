@@ -59,6 +59,33 @@
   cursor: not-allowed;
 }
 
+.discover-button {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.discover-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+}
+
+.discover-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.discover-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .search-hint {
   color: #6b7280;
   font-size: 14px;
@@ -70,7 +97,8 @@
     flex-direction: column;
   }
 
-  .search-button {
+  .search-button,
+  .discover-button {
     width: 100%;
   }
 }

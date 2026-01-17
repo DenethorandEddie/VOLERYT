@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 
-const SearchBar = ({ onSearch, loading }) => {
+const SearchBar = ({ onSearch, onDiscover, loading }) => {
   const [niche, setNiche] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (niche.trim()) {
       onSearch(niche.trim());
+    }
+  };
+
+  const handleDiscover = () => {
+    if (onDiscover) {
+      onDiscover();
     }
   };
 
@@ -30,9 +36,17 @@ const SearchBar = ({ onSearch, loading }) => {
           >
             {loading ? 'Searching...' : 'Search Niche'}
           </button>
+          <button
+            type="button"
+            className="discover-button"
+            onClick={handleDiscover}
+            disabled={loading}
+          >
+            {loading ? 'Discovering...' : '🔍 Discover All Niches'}
+          </button>
         </div>
         <p className="search-hint">
-          Search for a specific niche to analyze competition and find opportunities
+          Search for a specific niche OR discover channels across all YouTube niches automatically
         </p>
       </form>
     </div>
