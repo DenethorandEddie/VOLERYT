@@ -23,6 +23,18 @@ async def discover_channels(
         le=100,
         description="Maximum videos per channel"
     ),
+    min_subscribers: int = Query(
+        default=1000,
+        ge=0,
+        le=1000000,
+        description="Minimum subscriber count"
+    ),
+    min_total_views: int = Query(
+        default=50000,
+        ge=0,
+        le=100000000,
+        description="Minimum total view count"
+    ),
     target_channels: int = Query(
         default=20,
         ge=5,
@@ -49,6 +61,8 @@ async def discover_channels(
     **Filters:**
     - Channel age: from first upload (NOT channel creation)
     - Video count: maximum videos on channel
+    - Minimum subscribers: filter out channels with too few subscribers
+    - Minimum total views: filter out channels with too few total views
     - Only English channels
 
     **Returns:**
@@ -59,7 +73,8 @@ async def discover_channels(
     try:
         logger.info(
             f"Starting discovery: max_age={max_channel_age_days}d, "
-            f"max_videos={max_videos_per_channel}, target={target_channels}"
+            f"max_videos={max_videos_per_channel}, min_subs={min_subscribers}, "
+            f"min_views={min_total_views}, target={target_channels}"
         )
 
         # Check quota
@@ -79,6 +94,8 @@ async def discover_channels(
         result = discovery_service.discover_channels(
             max_channel_age_days=max_channel_age_days,
             max_videos_per_channel=max_videos_per_channel,
+            min_subscribers=min_subscribers,
+            min_total_views=min_total_views,
             target_channels=target_channels,
             search_terms_limit=15
         )

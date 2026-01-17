@@ -10,6 +10,14 @@ const FilterPanel = ({ filters, onFilterChange }) => {
     onFilterChange('maxVideos', parseInt(e.target.value));
   };
 
+  const handleMinSubscribersChange = (e) => {
+    onFilterChange('minSubscribers', parseInt(e.target.value));
+  };
+
+  const handleMinTotalViewsChange = (e) => {
+    onFilterChange('minTotalViews', parseInt(e.target.value));
+  };
+
   const getAgeTierDescription = (days) => {
     if (days <= 7) return 'S+ Tier (1 week)';
     if (days <= 30) return 'Great (1 month)';
@@ -63,6 +71,48 @@ const FilterPanel = ({ filters, onFilterChange }) => {
             <span>1</span>
             <span>15 (Ideal)</span>
             <span>50</span>
+          </div>
+        </div>
+
+        <div className="filter-group">
+          <label className="filter-label">
+            Minimum Subscribers: {filters.minSubscribers?.toLocaleString() || 0}
+          </label>
+          <input
+            type="range"
+            className="filter-slider"
+            min="0"
+            max="10000"
+            step="100"
+            value={filters.minSubscribers || 1000}
+            onChange={handleMinSubscribersChange}
+          />
+          <div className="slider-labels">
+            <span>0</span>
+            <span>1,000</span>
+            <span>5,000</span>
+            <span>10,000</span>
+          </div>
+        </div>
+
+        <div className="filter-group">
+          <label className="filter-label">
+            Minimum Total Views: {filters.minTotalViews?.toLocaleString() || 0}
+          </label>
+          <input
+            type="range"
+            className="filter-slider"
+            min="0"
+            max="500000"
+            step="10000"
+            value={filters.minTotalViews || 50000}
+            onChange={handleMinTotalViewsChange}
+          />
+          <div className="slider-labels">
+            <span>0</span>
+            <span>50K</span>
+            <span>250K</span>
+            <span>500K</span>
           </div>
         </div>
       </div>

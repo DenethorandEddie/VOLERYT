@@ -21,6 +21,8 @@ class DiscoveryService:
         self,
         max_channel_age_days: int = 180,
         max_videos_per_channel: int = 15,
+        min_subscribers: int = 1000,
+        min_total_views: int = 50000,
         target_channels: int = 20,
         search_terms_limit: int = 15
     ) -> Dict[str, Any]:
@@ -31,12 +33,14 @@ class DiscoveryService:
         1. Use broad search terms to find channels
         2. Order by date to get newest content
         3. Analyze each channel and detect its niche
-        4. Filter by age and video count
+        4. Filter by age, video count, subscribers, and views
         5. Return diverse set of channels from different niches
 
         Args:
             max_channel_age_days: Maximum channel age from first upload
             max_videos_per_channel: Maximum videos per channel
+            min_subscribers: Minimum subscriber count
+            min_total_views: Minimum total view count
             target_channels: Target number of channels to find
             search_terms_limit: Number of search terms to use
 
@@ -81,7 +85,9 @@ class DiscoveryService:
                         analyzed = self._analyze_discovered_channel(
                             channel,
                             max_channel_age_days,
-                            max_videos_per_channel
+                            max_videos_per_channel,
+                            min_subscribers,
+                            min_total_views
                         )
 
                         if analyzed:
@@ -134,7 +140,9 @@ class DiscoveryService:
         self,
         channel: Dict[str, Any],
         max_age_days: int,
-        max_videos: int
+        max_videos: int,
+        min_subscribers: int,
+        min_total_views: int
     ) -> Dict[str, Any] | None:
         """
         Analyze a discovered channel
@@ -143,6 +151,8 @@ class DiscoveryService:
             channel: Channel details from YouTube API
             max_age_days: Maximum allowed age
             max_videos: Maximum allowed video count
+            min_subscribers: Minimum subscriber count
+            min_total_views: Minimum total view count
 
         Returns:
             Analyzed channel dict or None if filtered out
@@ -168,6 +178,18 @@ class DiscoveryService:
         video_count = channel['video_count']
         if video_count > max_videos:
             logger.debug(f"Filtered: {channel['title']} - too many videos ({video_count})")
+            return None
+
+        # Filter by subscriber count
+        subscriber_count = channel['subscriber_count']
+        if subscriber_count < min_subscribers:
+            logger.debug(f"Filtered: {channel['title']} - too few subscribers ({subscriber_count})")
+            return None
+
+        # Filter by total views
+        total_views = channel['view_count']
+        if total_views < min_total_views:
+            logger.debug(f"Filtered: {channel['title']} - too few views ({total_views})")
             return None
 
         # Get some video titles for niche detection

@@ -54,6 +54,8 @@ export const discoverChannels = async (filters) => {
     const params = new URLSearchParams({
       max_channel_age_days: filters.maxAgeDays || 180,
       max_videos_per_channel: filters.maxVideos || 15,
+      min_subscribers: filters.minSubscribers || 1000,
+      min_total_views: filters.minTotalViews || 50000,
       target_channels: filters.targetChannels || 20,
     });
 
